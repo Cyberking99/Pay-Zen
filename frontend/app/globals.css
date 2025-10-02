@@ -1,0 +1,167 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
+}
+
+:root {
+  /* Blockchain/DeFi color scheme - Deep teal, forest green, amber gold */
+  --background: 15 23 42; /* slate-900 */
+  --foreground: 248 250 252; /* slate-50 */
+  --card: 30 41 59; /* slate-800 */
+  --card-foreground: 248 250 252; /* slate-50 */
+  --popover: 30 41 59; /* slate-800 */
+  --popover-foreground: 248 250 252; /* slate-50 */
+  --primary: 13 148 136; /* teal-600 - main brand color */
+  --primary-foreground: 255 255 255; /* white */
+  --secondary: 5 150 105; /* emerald-600 - growth/money */
+  --secondary-foreground: 255 255 255; /* white */
+  --muted: 51 65 85; /* slate-700 */
+  --muted-foreground: 148 163 184; /* slate-400 */
+  --accent: 245 158 11; /* amber-500 - value/premium */
+  --accent-foreground: 15 23 42; /* slate-900 */
+  --destructive: 239 68 68; /* red-500 */
+  --destructive-foreground: 255 255 255; /* white */
+  --border: 51 65 85; /* slate-700 */
+  --input: 30 41 59; /* slate-800 */
+  --ring: 13 148 136; /* teal-600 */
+  --chart-1: 13 148 136; /* teal-600 */
+  --chart-2: 5 150 105; /* emerald-600 */
+  --chart-3: 245 158 11; /* amber-500 */
+  --chart-4: 168 85 247; /* purple-500 */
+  --chart-5: 59 130 246; /* blue-500 */
+  --radius: 0.625rem;
+  --sidebar: 15 23 42; /* slate-900 */
+  --sidebar-foreground: 248 250 252; /* slate-50 */
+  --sidebar-primary: 13 148 136; /* teal-600 */
+  --sidebar-primary-foreground: 255 255 255; /* white */
+  --sidebar-accent: 30 41 59; /* slate-800 */
+  --sidebar-accent-foreground: 248 250 252; /* slate-50 */
+  --sidebar-border: 51 65 85; /* slate-700 */
+  --sidebar-ring: 13 148 136; /* teal-600 */
+}
+
+.dark {
+  --background: 15 23 42; /* slate-900 */
+  --foreground: 248 250 252; /* slate-50 */
+  --card: 30 41 59; /* slate-800 */
+  --card-foreground: 248 250 252; /* slate-50 */
+  --popover: 30 41 59; /* slate-800 */
+  --popover-foreground: 248 250 252; /* slate-50 */
+  --primary: 13 148 136; /* teal-600 */
+  --primary-foreground: 255 255 255; /* white */
+  --secondary: 5 150 105; /* emerald-600 */
+  --secondary-foreground: 255 255 255; /* white */
+  --muted: 51 65 85; /* slate-700 */
+  --muted-foreground: 148 163 184; /* slate-400 */
+  --accent: 245 158 11; /* amber-500 */
+  --accent-foreground: 15 23 42; /* slate-900 */
+  --destructive: 239 68 68; /* red-500 */
+  --destructive-foreground: 255 255 255; /* white */
+  --border: 51 65 85; /* slate-700 */
+  --input: 30 41 59; /* slate-800 */
+  --ring: 13 148 136; /* teal-600 */
+  --chart-1: 13 148 136; /* teal-600 */
+  --chart-2: 5 150 105; /* emerald-600 */
+  --chart-3: 245 158 11; /* amber-500 */
+  --chart-4: 168 85 247; /* purple-500 */
+  --chart-5: 59 130 246; /* blue-500 */
+  --sidebar: 15 23 42; /* slate-900 */
+  --sidebar-foreground: 248 250 252; /* slate-50 */
+  --sidebar-primary: 13 148 136; /* teal-600 */
+  --sidebar-primary-foreground: 255 255 255; /* white */
+  --sidebar-accent: 30 41 59; /* slate-800 */
+  --sidebar-accent-foreground: 248 250 252; /* slate-50 */
+  --sidebar-border: 51 65 85; /* slate-700 */
+  --sidebar-ring: 13 148 136; /* teal-600 */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+  }
+}
+
+/* Custom blockchain/DeFi styling */
+.gradient-primary {
+  background: linear-gradient(135deg, rgb(13 148 136) 0%, rgb(5 150 105) 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, rgb(245 158 11) 0%, rgb(251 191 36) 100%);
+}
+
+.glass-effect {
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+/* Additional blockchain theme utilities */
+.crypto-glow {
+  box-shadow: 0 0 20px rgba(13, 148, 136, 0.3);
+}
+
+.defi-border {
+  border: 1px solid rgba(13, 148, 136, 0.3);
+}
+
+.fintech-card {
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  backdrop-filter: blur(8px);
+}
