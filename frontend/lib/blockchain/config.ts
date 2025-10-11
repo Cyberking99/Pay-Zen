@@ -4,15 +4,17 @@ export const BLOCKCHAIN_CONFIG = {
     1: "0xA0b86a33E6441b8C4505E2E8b4C3D7F1c8E8E8E8", // Ethereum Mainnet USDC
     137: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174", // Polygon USDC
     11155111: "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238", // Sepolia USDC (testnet)
-    84532: "0x036CbD53842c5426634e7929541eC2318f3dCF7e" ,// base USDC contract for Sepolia
+    84532: "0x036CbD53842c5426634e7929541eC2318f3dCF7e", // Base Sepolia USDC
+    8453: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913", // Base Mainnet USDC
+    // Starknet contracts (these would need to be updated with actual Starknet USDC addresses)
+    // 23448594291968334: "0x...", // Starknet Sepolia USDC
+    // 23448594291968334: "0x...", // Starknet Mainnet USDC
   },
 
-  // Supported networks
+  // Supported networks - Focus on Base and Starknet (testnets only)
   NETWORKS: {
-    MAINNET: 1,
-    POLYGON: 137,
-    SEPOLIA: 11155111,
-    BASE: 84532, // Base Sepolia
+    BASE_SEPOLIA: 84532, // Base Sepolia (testnet)
+    STARKNET_SEPOLIA: 23448594291968334, // Starknet Sepolia (testnet)
   },
 
   // Default network

@@ -1,23 +1,33 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { History, Home, LinkIcon, LogOut, Send, Settings, Wallet, Menu, ChevronRight } from "lucide-react"
-import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
-import { useAuth } from "@/hooks/use-auth"
-import { toast } from "sonner"
+import type React from "react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  History,
+  Home,
+  LinkIcon,
+  LogOut,
+  Send,
+  Settings,
+  Wallet,
+  Menu,
+  ChevronRight,
+} from "lucide-react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useAuth } from "@/hooks/use-auth";
+import { toast } from "sonner";
 
 interface DashboardLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const { user, authenticated, logout } = useAuth()
-  const pathname = usePathname()
-  const router = useRouter()
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { user, authenticated, logout } = useAuth();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const navigation = [
     { name: "Dashboard", href: "/dashboard", icon: Home },
@@ -25,27 +35,27 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     { name: "Payment Links", href: "/payment-links", icon: LinkIcon },
     { name: "Transaction History", href: "/history", icon: History },
     { name: "Manage Links", href: "/manage-links", icon: Settings },
-  ]
+  ];
 
   // Generate breadcrumbs based on current path
   const getBreadcrumbs = () => {
-    const pathSegments = pathname.split("/").filter(Boolean)
-    const breadcrumbs = [{ name: "Dashboard", href: "/dashboard" }]
+    const pathSegments = pathname.split("/").filter(Boolean);
+    const breadcrumbs = [{ name: "Dashboard", href: "/dashboard" }];
     if (pathSegments.length > 1) {
-      const currentPage = navigation.find((item) => item.href === pathname)
+      const currentPage = navigation.find((item) => item.href === pathname);
       if (currentPage) {
-        breadcrumbs.push({ name: currentPage.name, href: pathname })
+        breadcrumbs.push({ name: currentPage.name, href: pathname });
       }
     }
-    return breadcrumbs
-  }
-  const breadcrumbs = getBreadcrumbs()
+    return breadcrumbs;
+  };
+  const breadcrumbs = getBreadcrumbs();
 
-  console.log("profile", user)
+  console.log("profile", user);
 
   if (!user && !authenticated) {
-    toast.error("Please login to continue")
-    router.push("/")
+    toast.error("Please login to continue");
+    router.push("/");
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center">
         <div className="flex items-center gap-3">
@@ -53,17 +63,20 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           <span className="text-white">Loading...</span>
         </div>
       </div>
-    )
+    );
   }
 
-  const profile = JSON.parse(localStorage.getItem("user") || "{}")
-  console.log("profile", profile)
+  const profile = JSON.parse(localStorage.getItem("user") || "{}");
+  console.log("profile", profile);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
-        <div className="fixed inset-0 z-40 bg-black/50 lg:hidden" onClick={() => setSidebarOpen(false)} />
+        <div
+          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
       )}
       {/* Sidebar */}
       <div
@@ -85,7 +98,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           {/* Navigation */}
           <nav className="flex-1 p-4 space-y-2">
             {navigation.map((item) => {
-              const isActive = pathname === item.href
+              const isActive = pathname === item.href;
               return (
                 <Link key={item.name} href={item.href}>
                   <Button
@@ -99,21 +112,29 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   >
                     <item.icon className="h-5 w-5" />
                     {item.name}
-                    {isActive && <div className="ml-auto w-2 h-2 rounded-full bg-teal-400" />}
+                    {isActive && (
+                      <div className="ml-auto w-2 h-2 rounded-full bg-teal-400" />
+                    )}
                   </Button>
                 </Link>
-              )
+              );
             })}
           </nav>
           {/* User profile section */}
           <div className="p-4 border-t border-slate-700/50">
             <div className="flex items-center gap-3 mb-4 p-3 rounded-lg bg-slate-800/30">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-emerald-500 flex items-center justify-center">
-                <span className="text-white font-semibold text-sm">{profile.fullName?.charAt(0).toUpperCase() || "U"}</span>
+                <span className="text-white font-semibold text-sm">
+                  {profile.fullName?.charAt(0).toUpperCase() || "U"}
+                </span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-white truncate">{profile.fullName || "User"}</p>
-                <p className="text-xs text-slate-400 truncate">@{profile.username || "username"}</p>
+                <p className="text-sm font-medium text-white truncate">
+                  {profile.fullName || "User"}
+                </p>
+                <p className="text-xs text-slate-400 truncate">
+                  @{profile.username || "username"}
+                </p>
               </div>
             </div>
             <Button
@@ -152,11 +173,15 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           <nav className="flex items-center space-x-2 text-sm">
             {breadcrumbs.map((breadcrumb, index) => (
               <div key={breadcrumb.href} className="flex items-center">
-                {index > 0 && <ChevronRight className="h-4 w-4 text-slate-500 mx-2" />}
+                {index > 0 && (
+                  <ChevronRight className="h-4 w-4 text-slate-500 mx-2" />
+                )}
                 <Link
                   href={breadcrumb.href}
                   className={`transition-colors ${
-                    index === breadcrumbs.length - 1 ? "text-white font-medium" : "text-slate-400 hover:text-white"
+                    index === breadcrumbs.length - 1
+                      ? "text-white font-medium"
+                      : "text-slate-400 hover:text-white"
                   }`}
                 >
                   {breadcrumb.name}
@@ -169,5 +194,5 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <main className="p-6 lg:pt-4">{children}</main>
       </div>
     </div>
-  )
+  );
 }

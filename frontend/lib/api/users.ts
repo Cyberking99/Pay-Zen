@@ -48,7 +48,7 @@ export const userService = {
 
   // Check if username is available
   async checkUsername(username: string): Promise<{ available: boolean }> {
-    const response = await apiClient.get<ApiResponse<{ available: boolean }>>(`/users/check-username/${username}`)
+    const response = await apiClient.get<any>(`/users/check-username/${username}`)
     console.log("response", response)
     if (response.data.success) {
       return response.data.data

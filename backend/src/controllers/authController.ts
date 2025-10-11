@@ -177,4 +177,46 @@ export const authController = {
       res.status(401).json({ valid: false, error: "Token verification failed" })
     }
   }),
+
+  // GET /api/auth/me
+  me: asyncHandler(async (req: AuthenticatedRequest, res: Response) => {
+    try {
+      if (!req.user) {
+        return res.status(401).json({ 
+          success: false,
+          error: "User not authenticated" 
+        })
+      }
+
+      // Get user from database
+      const user = await db("users").where("id", req.user.id).first()
+
+      if (!user || !user.is_active) {
+        return res.status(404).json({ 
+          success: false,
+          error: "User not found or inactive" 
+        })
+      }
+
+      res.json({
+        success: true,
+        data: {
+          id: user.id,
+          privyId: user.privy_id,
+          walletAddress: user.wallet_address,
+          username: user.username,
+          fullName: user.full_name,
+          age: user.age,
+          email: user.email,
+          hasCompletedOnboarding: !!(user.username && user.full_name && user.age),
+        },
+      })
+    } catch (error) {
+      logger.error("Get current user error:", error)
+      res.status(500).json({ 
+        success: false,
+        error: "Failed to get user information" 
+      })
+    }
+  }),
 }
