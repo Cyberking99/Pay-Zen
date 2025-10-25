@@ -44,14 +44,20 @@ export default function SendMoneyPage() {
   const pollingRef = useRef<NodeJS.Timeout | null>(null)
   const [validatedUser, setValidatedUser] = useState<any>(null)
   const [recipientInput, setRecipientInput] = useState("")
+  const [profile, setProfile] = useState<any>({})
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user")
+    if (storedUser) {
+      setProfile(JSON.parse(storedUser))
+    }
+  }, [])
 
   // if (!authenticated) {
   //   toast.error("Please login to continue")
   //   router.push("/")
   //   return null
   // }
-
-  const profile = JSON.parse(localStorage.getItem("user") || "{}")
 
   const validateRecipient = async (recipient: string, type: string) => {
     if (!recipient.trim()) {
